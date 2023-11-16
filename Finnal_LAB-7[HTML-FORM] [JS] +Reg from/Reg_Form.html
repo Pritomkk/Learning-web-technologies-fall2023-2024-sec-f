@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab Task</title>
+    <script src="reg_from.js" defer></script>
+</head>
+<body>
+    <form method="post" action="" enctype="" onsubmit="return Form()">
+        <center>
+            <table border="1">
+                <tr>
+                    <td colspan="2"> <h3 align="center">PERSON PROFILE</h3> </td>
+                </tr>
+                <tr>
+                    <td>Name:</td>
+                    <td><input type="text" id="Name" name="Name"></td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td><input type="email" id="email" name="email">
+                        <span id="i" onmouseover="show()" onmouseout="out()"> i </span> <br>
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td>Gender:</td>
+                    <td>
+                        <input type="radio" name="gender" id="male"> Male
+                        <input type="radio" name="gender" id="female"> Female
+                        <input type="radio" name="gender" id="other"> Other
+                    </td>
+                </tr>
+                <tr>
+                    <td>Date Of Birth:</td>
+                    <td><input type="date" id="dateInput"></td>
+                </tr>
+                <tr>
+                    <td>Blood Group:</td>
+                    <td>
+                        <select id="Blood">
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="AB+">AB+</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Picture:</td>
+                    <td><input type="file" id="Picture"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" value="Submit">
+                    </td>
+                </tr>
+            </table>
+        </center>
+    </form>
+</body>
+</html>

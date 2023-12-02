@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post" action=" " enctype="multipart/form-data" name="Reg" onsubmit="return Form()">
+        <fieldset>
+            <legend><h2>Admin_Registration</h2></legend>
+
+            Name:
+            <input type="text" id="Name" name="Name" placeholder="Enter your Name" /><br><br>
+
+            User Name:
+            <input type="text" id="UserName" name="UserName" placeholder="Enter your username" /><br><br>
+
+            Password:
+            <input type="password" id="Password" name="Password" placeholder="Enter your password" /><br><br>
+
+            Confirm Password:
+            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" /><br><br>
+
+            <input type="submit" id="submitBtn" name="Submit" value="Submit"/>
+        </fieldset>
+    </form>
+
+
+    <script>
+        
+function validName(name) {
+    
+    if (name === "") {
+        alert('Name is required!');
+        return false;
+    }
+    if (name.split(' ').length >2) {
+        alert("Name must contain at least two words");
+        return false;
+    }
+ 
+    for (let i = 0; i < name.split(' ').length; i++) 
+    {
+        let char = name[i];
+        if (!(char >= 'a' && char <= 'z') && !(char >= 'A' && char <= 'Z')) {
+            alert("Invalid Name");
+            return false;
+        }
+    }
+    return true;
+}
+
+function validatePassword(password) {
+    if (password === "") {
+        alert('Fill the password Properly');
+        return false;
+    }
+
+
+    if (password.length<=8) {
+        alert("Password must be at least 8 characters long.");
+        return false;
+    }
+
+    let specialCharacters = ['@', '#', '$', '%'];
+    let containsSpecialChar = false;
+
+    for (let char of specialCharacters) {
+        if (password.includes(char)) {
+            containsSpecialChar = true;
+            break;
+        }
+    }
+
+    if (!containsSpecialChar) {
+        alert("Password must contain at least one of the special characters (@, #, $, %).");
+        return false;
+    }
+
+    return true;
+}
+
+
+function confirmpass(pass, cpass) {
+    if (cpass === "") {
+        alert("Confirm Password required");
+        return false;
+    } else if (pass !== cpass) {
+        alert("Confirm password doesn't match ");
+        return false;
+    }
+
+    return true;
+}
+
+
+function validateUserName(name) {
+    if (name.trim() === "") {
+        alert("User name can't be empty");
+        return false;
+    }
+
+    if (name.split(' ').length>2) {
+        alert("User Name must contain at least two words");
+        return false;
+    }
+
+    let firstChar = name[0];
+    if (!(firstChar >= 'A' && firstChar <= 'Z') && !(firstChar >= 'a' && firstChar <= 'z')) {
+        alert("UserName must start with a letter");
+        return false;
+    }
+
+    for (let i = 0; i < name.length; i++) {
+        let char = name[i];
+        if (!((char >= 'A' && char <= 'Z') || (char >= 'a' && char <= 'z') || char === '.' || char === '_')) {
+            alert("Invalid character in the Username contain alpha period nad dash");
+            return false;
+        }
+    }
+
+    return true;
+}
+
+        function Form() {
+            let Name = document.getElementById('Name').value;
+            let userName = document.getElementById('UserName').value;
+            let password = document.getElementById('Password').value;
+            let confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (!validName(Name) ||
+                !validateUserName(userName) ||
+                !validatePassword(password) ||
+                !confirmpass(password, confirmPassword)
+            ) {
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+</html>

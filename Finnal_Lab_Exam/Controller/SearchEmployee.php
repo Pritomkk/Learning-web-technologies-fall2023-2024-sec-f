@@ -1,9 +1,12 @@
 <?php
+require_once('../Model/EmployeModel.php');
 
-    require_once('../Model/EmployeModel.php');
-    $username = $_REQUEST['person'];
-    $std = json_decode($username);
-    $search = SearchEmployeer( $std);
-    echo json_encode($search);
+if (isset($_POST['info'])) {
+    $searchQuery = $_POST['info'];
+    $search =  SearchEmployeer($searchQuery); 
 
+    foreach ($search as $result) {
+        echo "<p>{$result['employe_Name']} ";
+    }
+}
 ?>

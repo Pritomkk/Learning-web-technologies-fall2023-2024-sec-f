@@ -1,14 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form method="post" action="../Controller/EmployeRegCheck.php" enctype="multipart/form-data" name="Reg" onsubmit="return Form()">
+    <title>Update Employer</title>  
+  </head>
+  <body>
+  <form method="post" action="../Controller/EmployeRegCheck.php" enctype="multipart/form-data" name="Reg" onsubmit="return Form()">
         <fieldset>
-            <legend><h2>Employee_Registration</h2></legend>
+            <legend><h2>Update_Employe</h2></legend>
 
             Employee Name:
             <input type="text" id="employee_Name" name="employee_Name" placeholder="Enter name" /><br><br>
@@ -31,8 +28,11 @@
             <input type="submit" id="submitBtn" name="Submit" value="Submit"/>
         </fieldset>
     </form>
+</body>
+</html>
 
-    <script>
+
+<script>
         function validName(name) {
             if (name === "") {
                 alert('Name is required!');
@@ -45,8 +45,7 @@
 
             for (let i = 0; i < name.length; i++) {
                 let char = name[i];
-                if (!(char >= 'a' && char <= 'z') && !(char >= 'A' && char <= 'Z')) 
-                {
+                if (!(char >= 'a' && char <= 'z') && !(char >= 'A' && char <= 'Z')) {
                     alert("Invalid Name");
                     return false;
                 }
@@ -75,7 +74,7 @@
         }
 
         function Phone(phone) {
-            if (phone === "") {
+            if (phone.trim() === "") {
                 alert("Phone number is required");
                 return false;
             } else if (phone.length !== 11 || isNaN(phone)) {
@@ -86,7 +85,7 @@
         }
 
         function validateUserName(name) {
-            if (name=== "") {
+            if (name.trim() === "") {
                 alert("User name can't be empty");
                 return false;
             }
@@ -173,5 +172,3 @@
             return true;
         }
     </script>
-</body>
-</html>

@@ -5,14 +5,10 @@ require_once('../Model/Admin_Model.php');
 if (isset($_POST['Submit'])) 
 {
       $Name = $_POST["Name"];
-      $U_Name = $_POST["UserName"];
+      $UserName = $_POST["UserName"];
+      $Password = $_POST["Password"];
 
-    $Password = $_POST["Password"];
-
-
-
-
-    if (signupAdmin($Name,$U_Name,  $Password ) )
+    if (signupAdmin($Name,$UserName, $Password ) )
     {
         echo "Registration Successful ";
         exit();

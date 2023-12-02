@@ -1,17 +1,12 @@
 <?php
+    require_once ("../Model/EmployeModel.php");
 
-    session_start();
-    require_once ("Model/Admin_Model.php");
-
-    $name = $_REQUEST['name'];
-    $username = $_REQUEST['username'];
-    $companyName = $_REQUEST['companyName'];
-    $contactNum= $_REQUEST['contactNum'];
-    $password= $_REQUEST['password'];
-
-    if{
-
-        $updateEmployer = updateEmployer($name,$username,$companyName,$contactNum,$password);
+    $employee_Name = $_POST["employee_Name"];
+    $company_Name = $_POST["company_Name"];
+    $Contact_Num = $_POST["Contact_Num"];
+    $UserName = $_POST["UserName"];
+    $password = $_POST["Password"];
+    $updateEmployer = updateEmployer($name,$username,$companyName,$contactNum,$password);
 
         if ($updateEmployer)
         {
@@ -21,7 +16,5 @@
         {
             echo "can not update employer";
         }
-    }
-
-
+    
 ?>

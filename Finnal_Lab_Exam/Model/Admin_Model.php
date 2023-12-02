@@ -1,6 +1,6 @@
 <?php
 
-require_once("../Model/db.php")
+require_once("../Model/db.php");
 
 function signupAdmin($Name,$userName,$password )
 {
@@ -30,41 +30,23 @@ function signupAdmin($Name,$userName,$password )
 function adminLogin($username, $password)
 {
     $con = getConnection();
-    $sql = "select * from adminInfo where username='{$username}'and password='{$password}'";
+    $sql = "SELECT * FROM adminInfo WHERE username='{$username}' AND password='{$password}'";
     $result = mysqli_query($con, $sql);
-    $row= mysqli_num_rows($result);
 
-    if($row>0){
+    if ($result) {
+        $row = mysqli_num_rows($result);
 
-        $Admin = mysqli_fetch_assoc($row);
-        if ($Admin)
-        {
-            $name = $Admin['Name'];
-            $username =$Admin['Username'];
-            setcookie('Name', $name, time() + 5000, '/');
-            setcookie('Username', $username, time() + 5000, '/');
-        }         
-        return true;
-    }
-    else{
+        if ($row > 0) {
+            $Admin = mysqli_fetch_assoc($result); 
+            return true;
+        } else {
+            return false;
+        }
+    } else {
+      
         return false;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

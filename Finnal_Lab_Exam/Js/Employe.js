@@ -13,5 +13,10 @@ function update_emp()
      
 }
 
+function S_emp() 
+{
+    window.location.href="../View/SearchEmploye.php";
+     
+}
 
 

@@ -1,6 +1,6 @@
 <?php
 
-require_once("../Model/db.php")
+require_once("../Model/db.php");
 
 function EmployeLogin($username, $password)
 {
@@ -12,13 +12,6 @@ function EmployeLogin($username, $password)
     if($row>0){
 
         $Emp = mysqli_fetch_assoc($row);
-        if ($Emp)
-        {
-            $name = $Emp['Name'];
-            $username =$Emp['Username'];
-            setcookie('Name', $name, time() + 5000, '/');
-            setcookie('Username', $username, time() + 5000, '/');
-        }         
         return true;
     }
     else{
@@ -28,7 +21,7 @@ function EmployeLogin($username, $password)
 function signupEmploye($employe_Name,$company_Name,$Number,$userName,$password )
 {
     $con = getConnection();
-    $sql = "SELECT * FROM employe_info WHERE UserName ='$userName' ";
+    $sql = "SELECT * FROM employe_info WHERE user_name ='$userName' ";
     $checkResult = mysqli_query($con, $sql);
 
     if (mysqli_num_rows($checkResult) > 0) {
@@ -75,7 +68,8 @@ function updateEmployer($name, $username,$companyName,$contactNum,$password)
         if (!empty($Phone)) {
             $updates[] = "	password = '$password'";
         }
-        if (empty($updates)) {
+        if (empty($updates)) 
+        {
            
             return false;
         }
@@ -90,20 +84,73 @@ function updateEmployer($name, $username,$companyName,$contactNum,$password)
             return false;
         }
 }
-    
 
-function SearchEmployeer($username)
+function DisplayEmployeInformation()
 {
+    $con = getConnection();
+    $sql = "SELECT * FROM employe_info ";
+    $result = mysqli_query($con, $sql);
 
-        $con = getConnection();
-        $sql = "select * from employe_info where UserName='$username' ";
-        $result = mysqli_query($con, $sql);
-    
-        $user = mysqli_fetch_assoc($result);
-    
+    $rows = array(); 
 
+    while ($row = mysqli_fetch_assoc($result)) {
+        $rows[] = $row;  
     }
 
+    return $rows;
+}
+
+function DeleteEmp($UserName) 
+{   
+    $con = getConnection();
+    $sql = "SELECT * FROM employe_info WHERE UserName = '$UserName'";
+    $result = mysqli_query($con, $sql);
+
+    if (mysqli_num_rows($result) > 0) 
+    {
+        $deleteUserQuery = "DELETE FROM employe_info WHERE UserName = '$UserName'";
+        $Delete = mysqli_query($con, $deleteUserQuery);
+
+        if ($Delete) 
+        {
+            return true;
+        } 
+        else 
+        {
+            return false;
+        }
+    } 
+    else 
+    {
+        echo "<b><center>No Data</center></b>";
+        return false;
+    }
+}  
+
+
+
+
+
+
+
+function SearchEmployeer($employe_Name)
+{
+    $con = getConnection();
+    $sql = "SELECT * FROM employe_info WHERE employe_Name='$employe_Name'";
+    $result = mysqli_query($con, $sql);
+
+    if ($result) {
+        $data = array(); 
+
+        while ($row = mysqli_fetch_assoc($result)) {
+            $data[] = $row; 
+        }
+
+        return $data; 
+    } else {
+        return null; 
+    }
+}
 
 
 ?>

@@ -1,24 +1,16 @@
-function search() {
-    let username = document.getElementById("search").value;
-  
-    let person=
-    {
-      "Employe_Name":username
-    }
+function searchinfo(event) {
+  let info = document.getElementById("info");
+  let searchQuery = document.getElementById("infobtn").value;
 
-    let data  = JSON.stringify(person);
+  let xhttp = new XMLHttpRequest();
+  xhttp.open("POST", "../Controller/SearchEmployee.php", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-    let xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "../Controller/SearchEmployee.php", true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  
-    xhttp.onreadystatechange = function () {
-      if (xhttp.readyState == 4 && xhttp.status == 200) 
-      {
-        let =JSON.parse(xhttp.responseText);
-        document.getElementById("searchemp").innerHTML = empname.Employe_Name;
+  xhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+          info.innerHTML = this.responseText;
       }
-     
-    };
-    xhttp.send("person=" + data);
-  }
+  };
+
+  xhttp.send("info=" + searchQuery);
+}

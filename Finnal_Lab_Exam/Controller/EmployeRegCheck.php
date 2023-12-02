@@ -1,19 +1,16 @@
 <?php
-require_once('../Model/Admin_Model.php');
+require_once('../Model/EmployeModel.php');
 
 
 if (isset($_POST['Submit'])) 
 {
-      $eName = $_POST["employee_Name"];
-      $ecompany = $_POST["company_Name"];
-      $contactinfo = $_POST["Name"];
-      $username = $_POST["Name"];
-      $password = $_POST["Name"];
-      $confirmed pass = $_POST["UserName"];
+      $employee_Name = $_POST["employee_Name"];
+      $company_Name = $_POST["company_Name"];
+      $Contact_Num = $_POST["Contact_Num"];
+      $UserName = $_POST["UserName"];
+      $password = $_POST["Password"];
 
-
-
-    if (signupAdmin( ) )
+    if (signupEmploye($employee_Name, $company_Name,$Contact_Num, $UserName,$password) )
     {
         echo "Registration Successful ";
         exit();
